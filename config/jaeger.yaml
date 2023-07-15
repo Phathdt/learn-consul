@@ -1,0 +1,4 @@
+collector:
+  service:
+    zipkin:
+      port: 9411

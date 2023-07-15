@@ -1,0 +1,26 @@
+apiVersion: consul.hashicorp.com/v1alpha1
+kind: ServiceRouter
+metadata:
+  name: backend
+spec:
+  routes:
+    # - destination:
+    #     requestTimeout: '1s'
+    #     numRetries: 5
+    #     retryOnStatusCodes: [503]
+    # - match:
+    #     http:
+    #       header:
+    #         - name: X-Version
+    #           exact: v2
+    #   destination:
+    #     serviceSubset: v2
+    # - destination:
+    #     serviceSubset: v1
+    - match:
+        http:
+          queryParam:
+            - name: canary
+              exact: 'true'
+      destination:
+        serviceSubset: v2
